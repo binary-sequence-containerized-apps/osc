@@ -1,0 +1,11 @@
+FROM docker.io/opensuse/tumbleweed
+
+RUN zypper --non-interactive install --no-recommends \
+           build less osc python3-keyring vim vim-data &&\
+    zypper clean -a
+
+VOLUME [ "/root/.config/osc" ]
+VOLUME [ "/var/tmp/oscbuild" ]
+VOLUME [ "/var/tmp/osbuild-packagecache" ]
+
+ENTRYPOINT [ "/bin/osc" ]
